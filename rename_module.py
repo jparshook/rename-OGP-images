@@ -17,11 +17,12 @@ def main(dest_folder: pathlib.Path, new_names: List[str]) -> None:
 
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument("--directory")
-    arg_parser.add_argument("--names")
-    arg_parser.add_argument("--key")
+    arg_parser.add_argument("-d", "--directory", help="relative path to images")
+#    arg_parser.add_argument("--names")
+    arg_parser.add_argument("-v","--version", help="module version")
     args = arg_parser.parse_args()
     folder = pathlib.Path(args.directory)
-    with open(args.names, "r") as f:
+#    with open(args.names, "r") as f:
+    with open("names.json", "r") as f:
         names = json.load(f)
-    main(folder, names[args.key])
+    main(folder, names[args.version])
